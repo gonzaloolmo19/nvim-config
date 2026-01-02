@@ -63,13 +63,3 @@ On the first launch, `lazy.nvim` will automatically bootstrap and install all pl
 │       └── ...
 └── lazy-lock.json        # Plugin lockfile
 ```
-
-## Keymaps
-
-The leader key is set to `<Space>`.
-
-- **Find Files**: `<leader>sf`
-- **Live Grep**: `<leader>sg`
-- **Help**: `<leader>sh`
-- **File Explorer**: `-` (via mini.files if installed) or use Telescope
-- **Diagnostics**: `<leader>q` to open diagnostic list
