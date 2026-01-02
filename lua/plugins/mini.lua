@@ -22,6 +22,9 @@ return { -- Collection of various small independent plugins/modules
 		-- Highlight trailing whitespace
 		require("mini.trailspace").setup()
 
+		-- Commenting
+		require("mini.comment").setup()
+
 		-- File Explorer
 		require("mini.files").setup()
 		vim.keymap.set("n", "-", function()
