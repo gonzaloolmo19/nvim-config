@@ -197,7 +197,11 @@ return {
       local servers = {
         -- clangd = {},
         -- gopls = {},
-        -- pyright = {},
+        pyright = {
+          before_init = function(_, config)
+            config.settings.python.pythonPath = vim.fn.exepath('python')
+          end,
+        },
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -240,6 +244,8 @@ return {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'pylint', -- Python linter
+        'ruff',   -- Python formatter
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -255,6 +261,9 @@ return {
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             require('lspconfig')[server_name].setup(server)
           end,
+          -- Explicitly disable Ruff setup (it's installed for formatting only)
+          ruff = function() end,
+          ruff_lsp = function() end,
         },
       }
     end,
